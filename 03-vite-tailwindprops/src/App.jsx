@@ -1,16 +1,20 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Card from './components/Card'
+import rengokuImage from './assets/rengokuImage.webp';
+import gyomeiImage from './assets/gyomeiImage.jpg';
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <h1 className="text-3xl colors-blue-500 text-green-600">
-        Hello Vite + React!
-      </h1>
+    <Card username="Rengoku" Anime='Demon Slayer' title='Flame Hashira' img={rengokuImage}/>
+    <br />
+    <Card username="Gyomei"  Anime='Demon Slayer' title='Stone Hashira' img={gyomeiImage}/>
+    <br />
+    <Card />
+      
     </>
   )
 }
