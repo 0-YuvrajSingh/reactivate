@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import './App.css'
 import Card from './components/Card'
 import rengokuImage from './assets/rengokuImage.webp';
 import gyomeiImage from './assets/gyomeiImage.jpg';
