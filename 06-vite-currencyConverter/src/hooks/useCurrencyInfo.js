@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
 
-export function useCurrencyInfo(baseCurrency) {
+export const useCurrencyInfo = (currency) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const url = `https://open.er-api.com/v6/latest/${baseCurrency}`;
+    if (!currency) return;
 
-    fetch(url)
+    fetch(`https://open.er-api.com/v6/latest/${currency}`)
       .then((res) => res.json())
-      .then((res) => {
-        if (res && res.result === "success") {
-          setData(res.rates);
-        } else {
-          setData({});
-        }
-      })
-      .catch(() => setData({}));
-  }, [baseCurrency]);
+      .then((res) => setData(res.rates))
+      .catch((err) => {
+        console.error("Failed to fetch currency data", err);
+        setData({});
+      });
+  }, [currency]);
 
   return data;
-}
+};
