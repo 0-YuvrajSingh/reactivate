@@ -1,6 +1,7 @@
 import { useState } from "react";
 import InputBox from "./components/InputBox";
 import { useCurrencyInfo } from "./hooks/useCurrencyInfo";
+import shapeImage from "./assets/shapeImage.jpg";
 
 function App() {
   const [amount, setAmount] = useState(0);
@@ -25,19 +26,18 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-black/70">
+    <div className="relative min-h-screen flex items-center justify-center bg-black/10">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1609051646805-d733c8b6ef42?auto=format&fit=crop&w=1470&q=80')",
+          backgroundImage: `url(${shapeImage})`,
         }}
       ></div>
 
       {/* Converter UI */}
-      <div className="relative z-10 w-full max-w-md bg-black bg-opacity-90 p-6 rounded-lg shadow-lg text-white">
-        <h1 className="text-3xl font-bold text-orange-500 mb-6 text-center">
+      <div className="relative z-10 w-full max-w-md bg-black/70 backdrop-blur-md p-6 rounded-xl shadow-2xl text-white">
+        <h1 className="text-3xl font-bold text-purple-400 text-center mb-6 drop-shadow-[0_0_10px_#8e2de2]">
           Currency Converter
         </h1>
 
@@ -47,7 +47,6 @@ function App() {
             convert();
           }}
         >
-          {/* From Input */}
           <InputBox
             label="From"
             amount={amount}
@@ -58,32 +57,30 @@ function App() {
             disabledAmount={false}
           />
 
-          {/* Swap */}
           <div className="text-center my-4">
             <button
               type="button"
               onClick={swap}
-              className="text-xl px-4 py-2 bg-orange-500 text-white font-semibold rounded hover:bg-orange-600"
+              className="text-xl px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded hover:opacity-90 shadow-md"
             >
-              🔁 Swap
+              Swap
             </button>
           </div>
 
-          {/* To Input */}
           <InputBox
             label="To"
             amount={convertedAmount}
+            onAmountChange={setConvertedAmount}
             onCurrencyChange={setToCurrency}
             currencyOptions={currencyOptions}
             selectedCurrency={toCurrency}
             disabledAmount={true}
           />
 
-          {/* Convert Button */}
           <div className="mt-4">
             <button
               type="submit"
-              className="w-full bg-orange-500 text-black font-semibold py-2 rounded hover:bg-orange-600"
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-2 rounded shadow-md hover:opacity-90"
             >
               Convert {fromCurrency.toUpperCase()} → {toCurrency.toUpperCase()}
             </button>
